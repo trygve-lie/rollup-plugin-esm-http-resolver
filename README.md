@@ -31,8 +31,33 @@ export default {
 
 ## Description
 
+This module can load ES modules from a http endpoint. It will more or less
+load ES modules the same way as a browser will load them.
+
+Lest say one have the following structure of ES modules on a http server:
+
+```sh
+/assets/utils/parse.js
+/assets/modules/module-a.js
+/assets/modules/module-b.js
+/assets/main.js
+```
+
+Both `modules/module-a.js` and `modules/module-b.js` imports `utils/parse.js`
+and `/assets/main.js` is the main file importing `modules/module-a.js` and
+`modules/module-b.js`.
+
+One can now simply make a bundle out of these by passing the URL to
+the main file (`http://cdn.mysite.com/assets/main.js`) to Rollups
+`input` property.
+
+This loader will then resolve the relative imports and request each module
+from the http server.
+
+This module will only load ES modules
 
 ## Options
+
 
 
 ## License
