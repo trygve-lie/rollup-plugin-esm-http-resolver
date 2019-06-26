@@ -1,0 +1,40 @@
+{
+  "name": "rollup-plugin-esm-http-loader",
+  "version": "0.0.1",
+  "description": "Rollup plugin for loading ES modules over http",
+  "type": "module",
+  "main": "lib/plugin.mjs",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "tap test/*.mjs",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trygve-lie/rollup-plugin-esm-http-loader.git"
+  },
+  "keywords": [
+    "rollup",
+    "rollup.js",
+    "esm"
+  ],
+  "author": "Trygve Lie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/trygve-lie/rollup-plugin-esm-http-loader/issues"
+  },
+  "homepage": "https://github.com/trygve-lie/rollup-plugin-esm-http-loader#readme",
+  "devDependencies": {
+    "eslint-config-airbnb-base": "13.1.0",
+    "eslint-plugin-import": "2.18.0",
+    "eslint": "6.0.1",
+    "rollup": "1.16.2",
+    "tap": "14.3.1"
+  },
+  "dependencies": {
+    "node-fetch": "2.6.0"
+  }
+}
