@@ -1,8 +1,11 @@
 import esmHttpLoader from '../';
+import HttpServer from '../utils/HttpServer';
 import rollup from 'rollup';
 import tap from 'tap';
 
 tap.test('plugin() - initial - should be', async (t) => {
+
+    const server = new HttpServer();
 
     const options = {
 
