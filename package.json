@@ -1,7 +1,7 @@
 {
   "name": "rollup-plugin-esm-http-loader",
   "version": "0.0.1",
-  "description": "Rollup plugin for loading ES modules over http",
+  "description": "Rollup plugin for loading ES modules over http(s)",
   "type": "module",
   "main": "lib/plugin.mjs",
   "directories": {
@@ -18,6 +18,7 @@
     "url": "git+https://github.com/trygve-lie/rollup-plugin-esm-http-loader.git"
   },
   "keywords": [
+    "rollup-plugin",
     "rollup",
     "rollup.js",
     "esm"
