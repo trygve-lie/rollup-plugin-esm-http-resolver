@@ -21,47 +21,45 @@ const MIME_TYPES = {
 };
 
 export default class HttpServer {
-    constructor() {
+    constructor({ wwwroot = './' } = {}) {
         this.server;
 
-        this.app = http.createServer((request, response) => {
-            console.log('request ', request.url);
-
-            var filePath = '.' + request.url;
+        this.app = http.createServer((req, res) => {
+            let filePath = '.' + req.url;
             if (filePath == './') {
                 filePath = './index.html';
             }
 
-            var extname = String(path.extname(filePath)).toLowerCase();
+            const file = path.join(wwwroot, filePath);
 
-            var contentType = MIME_TYPES[extname] || 'application/octet-stream';
-
-            fs.readFile(filePath, function(error, content) {
+            fs.readFile(file, (error, content) => {
                 if (error) {
-                    if(error.code == 'ENOENT') {
-                        fs.readFile('./404.html', function(error, content) {
-                            response.writeHead(404, { 'Content-Type': contentType });
-                            response.end(content, 'utf-8');
-                        });
+                    if (error.code == 'ENOENT') {
+                        res.statusCode = 404;
+                        res.setHeader('Content-Type', 'text/plain');
+                        res.end('Not found');
+                        return;
                     }
-                    else {
-                        response.writeHead(500);
-                        response.end('Internal server error');
-                        response.end();
-                    }
-                }
-                else {
-                    response.writeHead(200, { 'Content-Type': contentType });
-                    response.end(content, 'utf-8');
-                }
-            });
 
+                    res.statusCode = 500;
+                    res.setHeader('Content-Type', 'text/plain');
+                    res.end('Internal server error');
+                    return;
+                }
+
+                const extname = String(path.extname(filePath)).toLowerCase();
+                const contentType = MIME_TYPES[extname] || 'application/octet-stream';
+
+                res.statusCode = 200;
+                res.setHeader('Content-Type', contentType);
+                res.end(content, 'utf-8');
+            });
         });
     }
 
-    listen() {
+    listen(port = 0) {
         return new Promise(resolve => {
-            this.server = this.app.listen(0, 'localhost', () => {
+            this.server = this.app.listen(port, 'localhost', () => {
                 const address = `http://${this.server.address().address}:${
                     this.server.address().port
                 }`;
@@ -82,57 +80,3 @@ export default class HttpServer {
         });
     }
 }
-
-/*
-http.createServer((request, response) => {
-    console.log('request ', request.url);
-
-    var filePath = '.' + request.url;
-    if (filePath == './') {
-        filePath = './index.html';
-    }
-
-    var extname = String(path.extname(filePath)).toLowerCase();
-    var mimeTypes = {
-        '.html': 'text/html',
-        '.js': 'text/javascript',
-        '.css': 'text/css',
-        '.json': 'application/json',
-        '.png': 'image/png',
-        '.jpg': 'image/jpg',
-        '.gif': 'image/gif',
-        '.wav': 'audio/wav',
-        '.mp4': 'video/mp4',
-        '.woff': 'application/font-woff',
-        '.ttf': 'application/font-ttf',
-        '.eot': 'application/vnd.ms-fontobject',
-        '.otf': 'application/font-otf',
-        '.svg': 'application/image/svg+xml',
-        '.wasm': 'application/wasm'
-    };
-
-    var contentType = mimeTypes[extname] || 'application/octet-stream';
-
-    fs.readFile(filePath, function(error, content) {
-        if (error) {
-            if(error.code == 'ENOENT') {
-                fs.readFile('./404.html', function(error, content) {
-                    response.writeHead(404, { 'Content-Type': contentType });
-                    response.end(content, 'utf-8');
-                });
-            }
-            else {
-                response.writeHead(500);
-                response.end('Internal server error');
-                response.end();
-            }
-        }
-        else {
-            response.writeHead(200, { 'Content-Type': contentType });
-            response.end(content, 'utf-8');
-        }
-    });
-
-}).listen(8125);
-console.log('Server running at http://127.0.0.1:8125/');
-*/

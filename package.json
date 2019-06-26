@@ -10,7 +10,8 @@
   "scripts": {
     "test": "tap test/*.mjs",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "start": "node --experimental-modules ./example/server.mjs"
   },
   "repository": {
     "type": "git",
