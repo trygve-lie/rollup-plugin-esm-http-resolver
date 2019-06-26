@@ -58,7 +58,12 @@ This module will only load ES modules
 
 ## Options
 
+This plugin take the following options:
 
+| option   | default | type     | required | details                                                                                                 |
+| -------- | ------- | -------- | -------- | ------------------------------------------------------------------------------------------------------- |
+| timeout  | `10000` | `number` | `false`  | How long, in millisecondsm before a request to a file should be canceled if the server does not respond |
+| follow   | `10`    | `number` | `false`  | How many redirects jumps a request to a file should follow before canceling the request                 |
 
 ## License
 
