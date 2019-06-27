@@ -1,17 +1,17 @@
 {
   "name": "rollup-plugin-esm-http-loader",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Rollup plugin for loading ES modules over http(s)",
-  "type": "module",
-  "main": "lib/plugin.mjs",
+  "main": "dist/plugin.cjs.js",
   "directories": {
-    "lib": "lib"
+    "dist": "dist"
   },
   "scripts": {
     "test": "tap test/*.mjs",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "start": "node --experimental-modules ./example/server.mjs"
+    "start": "node --experimental-modules ./example/server.mjs",
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",
@@ -19,8 +19,9 @@
   },
   "keywords": [
     "rollup-plugin",
-    "rollup",
     "rollup.js",
+    "resolve",
+    "rollup",
     "esm"
   ],
   "author": "Trygve Lie",

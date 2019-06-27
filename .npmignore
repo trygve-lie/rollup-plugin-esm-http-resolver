@@ -1,7 +1,9 @@
 node_modules
 .nyc_output/
 benchmark/
+example/
 test/
+src/
 *.log
 *.png
 *.svg
@@ -10,3 +12,4 @@ test/
 .eslintrc
 .eslintignore
 .travis.yml
+rollup.config.js

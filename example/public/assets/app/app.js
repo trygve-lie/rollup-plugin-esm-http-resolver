@@ -1,5 +1,5 @@
 // import { render } from 'lit-html';
-// import * as views from './views.js';
+import * as views from './views.js';
 import { data } from '../data/data.js';
 
 export default class App {
@@ -10,6 +10,7 @@ export default class App {
     render() {
         const items = data();
         console.log(items);
+        views.main(items);
         // render(views.main(items.data), this.root);
     }
 

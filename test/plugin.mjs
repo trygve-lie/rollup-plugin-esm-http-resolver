@@ -1,4 +1,4 @@
-import esmHttpLoader from '../';
+import esmHttpLoader from '../src/plugin';
 import HttpServer from '../utils/HttpServer';
 import rollup from 'rollup';
 import tap from 'tap';
