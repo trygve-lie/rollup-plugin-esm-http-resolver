@@ -1,31 +1,25 @@
 import esmHttpLoader from '../src/plugin';
 import HttpServer from '../utils/HttpServer';
 import rollup from 'rollup';
+import path from 'path';
+import url from 'url';
 import tap from 'tap';
 
-tap.test('plugin() - initial - should be', async (t) => {
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
-    const server = new HttpServer();
+tap.test('plugin() - initial - should be', async (t) => {
+    const server = new HttpServer({ wwwroot: `${__dirname}/../utils/modules/simple`});
+    const address = await server.listen();
 
     const options = {
-
-        input: 'http://localhost:7400/public/js/esm/assets/js/main.js',
-        plugins: [esmHttpLoader({
-            timeout: 5000,
-        })],
-        preserveModules: true,
-/*        output: {
-            // file: 'geo.js',
-            dir: 'geo',
-            name: 'geo',
-            format: 'esm'
-        }
-*/
+        input: `${address}/assets/main.js`,
+        plugins: [esmHttpLoader()],
     }
-
 
     const esm = await rollup.rollup(options);
 
-    t.equal('foo', 'foo');
+    t.equal(esm.cache.modules.length, 5);
+
+    await server.close();
     t.end();
 });
