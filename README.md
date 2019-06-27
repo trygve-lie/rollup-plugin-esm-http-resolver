@@ -18,7 +18,7 @@ $ npm install rollup-plugin-esm-http-loader
 import esmHttpLoader from 'rollup-plugin-esm-http-loader';
 
 export default {
-    input: 'http://localhost:7400/public/js/main.js',
+    input: 'http://localhost:9000/assets/main.js',
     plugins: [esmHttpLoader({
         timeout: 5000,
     })],
@@ -54,7 +54,14 @@ the main file (`http://cdn.mysite.com/assets/main.js`) to Rollups
 This loader will then resolve the relative imports and request each module
 from the http server.
 
-This module will only load ES modules
+This module will only load ES modules.
+
+### Caching
+
+In the above example both `modules/module-a.js` and `modules/module-b.js`
+imports `utils/parse.js`. This module will cache the first request to
+`utils/parse.js` when its resolve in `modules/module-a.js` and when
+`modules/module-b.js` resolves it, it will be read from cache.
 
 ## Options
 

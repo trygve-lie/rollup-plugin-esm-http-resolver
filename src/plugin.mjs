@@ -18,6 +18,8 @@ const illegalStatus = (response, ignore) => {
     return response.status !== 200;
 }
 
+const urlIsRelative = url => url.substr(0, 4) !== 'http';
+
 export default function esmHttpLoader({
     ignoreContentType = false,
     ignoreStatus = false,
@@ -34,7 +36,7 @@ export default function esmHttpLoader({
         name: 'rollup-plugin-esm-http-loader',
 
         buildStart(options) {
-        // console.log(options)
+            if (urlIsRelative(options.input)) throw Error('Value to the input option is not an absolute URL');
         },
 
         resolveId(importee, importer) {
@@ -69,7 +71,7 @@ export default function esmHttpLoader({
 
         buildEnd(error) {
             if (error) {
-                console.log(error)
+                // console.log(error)
             }
         }
     };

@@ -7,7 +7,7 @@ import tap from 'tap';
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
-tap.test('plugin() - initial - should be', async (t) => {
+tap.test('plugin() - input is not an absolute URL - should resolve all files', async (t) => {
     const server = new HttpServer({ wwwroot: `${__dirname}/../utils/modules/simple`});
     const address = await server.listen();
 
@@ -21,5 +21,14 @@ tap.test('plugin() - initial - should be', async (t) => {
     t.equal(esm.cache.modules.length, 5);
 
     await server.close();
+    t.end();
+});
+
+tap.test('plugin() - input is not an absolute URL - should reject process', (t) => {
+    const options = {
+        input: '/not/a/url',
+        plugins: [esmHttpLoader()],
+    }
+    t.rejects(rollup.rollup(options), new Error('Value to the input option is not an absolute URL'));
     t.end();
 });
