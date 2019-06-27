@@ -1,10 +1,11 @@
+import { firstElement } from './utils/dom.js';
 import App from './app/app.js';
 
 const ready = () => {
     return new Promise((resolve, reject) => {
         document.addEventListener("DOMContentLoaded", (event) => {
             const el = document.getElementById('app');
-            resolve(el);
+            resolve(firstElement(el));
         });
     });
 }

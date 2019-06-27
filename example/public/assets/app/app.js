@@ -1,22 +1,22 @@
-// import { render } from 'lit-html';
+import { replaceElement } from '../utils/dom.js';
 import * as views from './views.js';
 import { data } from '../data/data.js';
 
 export default class App {
     constructor(root) {
         this.root = root;
+
     }
 
     render() {
         const items = data();
-        console.log(items);
-        views.main(items);
-        // render(views.main(items.data), this.root);
+        const el = views.valueList(items);
+        this.root = replaceElement(this.root, el);
     }
 
     update() {
         setInterval(() => {
             this.render();
-        }, 500);
+        }, 1000);
     }
 }
