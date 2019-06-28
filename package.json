@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-esm-http-resolver",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Rollup plugin for resolving ES modules over http(s)",
   "main": "dist/plugin.cjs.js",
   "directories": {
