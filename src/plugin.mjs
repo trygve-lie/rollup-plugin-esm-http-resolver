@@ -20,7 +20,7 @@ const illegalStatus = (response, ignore) => {
 
 const urlIsRelative = url => url.substr(0, 4) !== 'http';
 
-export default function esmHttpLoader({
+export default function esmHttpResolver({
     ignoreContentType = false,
     ignoreStatus = false,
     timeout = 10000,
@@ -33,7 +33,7 @@ export default function esmHttpLoader({
     };
 
     return {
-        name: 'rollup-plugin-esm-http-loader',
+        name: 'rollup-plugin-esm-http-resolver',
 
         buildStart(options) {
             if (urlIsRelative(options.input)) throw Error('Value to the input option is not an absolute URL');
@@ -51,20 +51,22 @@ export default function esmHttpLoader({
             let code = cache.get(id);
             if (code) return { code };
 
-            const response = await fetch(id, fetchOptions);
+            try {
+                const response = await fetch(id, fetchOptions);
 
-            if (illegalStatus(response, ignoreStatus)) {
-                // Do some error handling
-                console.log('valid status')
+                if (illegalStatus(response, ignoreStatus)) {
+                    throw Error(`Server responded with http status ${response.status} for ${id}`);
+                }
+
+                if (illegalContentType(response, ignoreContentType)) {
+                    throw Error(`Server responded with content type ${response.headers.get('Content-Type')} for ${id}`);
+                }
+
+                code = await response.text();
+                cache.set(id, code);
+            } catch (error) {
+                throw error;
             }
-
-            if (illegalContentType(response, ignoreContentType)) {
-                // Do some error handling
-                console.log('valid content type')
-            }
-
-            code = await response.text();
-            cache.set(id, code);
 
             return { code };
         },

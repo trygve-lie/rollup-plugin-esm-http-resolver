@@ -1,7 +1,7 @@
 {
-  "name": "rollup-plugin-esm-http-loader",
+  "name": "rollup-plugin-esm-http-resolver",
   "version": "0.0.3",
-  "description": "Rollup plugin for loading ES modules over http(s)",
+  "description": "Rollup plugin for resolving ES modules over http(s)",
   "main": "dist/plugin.cjs.js",
   "directories": {
     "dist": "dist"
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/trygve-lie/rollup-plugin-esm-http-loader.git"
+    "url": "git+https://github.com/trygve-lie/rollup-plugin-esm-http-resolver.git"
   },
   "keywords": [
     "rollup-plugin",
@@ -27,9 +27,9 @@
   "author": "Trygve Lie",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/trygve-lie/rollup-plugin-esm-http-loader/issues"
+    "url": "https://github.com/trygve-lie/rollup-plugin-esm-http-resolver/issues"
   },
-  "homepage": "https://github.com/trygve-lie/rollup-plugin-esm-http-loader#readme",
+  "homepage": "https://github.com/trygve-lie/rollup-plugin-esm-http-resolver#readme",
   "devDependencies": {
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "2.18.0",

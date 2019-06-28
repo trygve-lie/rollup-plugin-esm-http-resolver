@@ -1,25 +1,25 @@
-# rollup-plugin-esm-http-loader
+# rollup-plugin-esm-http-resolver
 
-Rollup plugin for loading ES modules over http(s).
+Rollup plugin for resolving ES modules over http(s).
 
-[![Dependencies](https://img.shields.io/david/trygve-lie/rollup-plugin-esm-http-loader.svg?style=flat-square)](https://david-dm.org/trygve-lie/rollup-plugin-esm-http-loader)
-[![Build Status](http://img.shields.io/travis/trygve-lie/rollup-plugin-esm-http-loader/master.svg?style=flat-square)](https://travis-ci.org/trygve-lie/rollup-plugin-esm-http-loader)
-[![Known Vulnerabilities](https://snyk.io/test/github/trygve-lie/rollup-plugin-esm-http-loader/badge.svg?targetFile=package.json&style=flat-square)](https://snyk.io/test/github/trygve-lie/rollup-plugin-esm-http-loader?targetFile=package.json)
+[![Dependencies](https://img.shields.io/david/trygve-lie/rollup-plugin-esm-http-resolver.svg?style=flat-square)](https://david-dm.org/trygve-lie/rollup-plugin-esm-http-resolver)
+[![Build Status](http://img.shields.io/travis/trygve-lie/rollup-plugin-esm-http-resolver/master.svg?style=flat-square)](https://travis-ci.org/trygve-lie/rollup-plugin-esm-http-resolver)
+[![Known Vulnerabilities](https://snyk.io/test/github/trygve-lie/rollup-plugin-esm-http-resolver/badge.svg?targetFile=package.json&style=flat-square)](https://snyk.io/test/github/trygve-lie/rollup-plugin-esm-http-resolver?targetFile=package.json)
 
 ## Installation
 
 ```bash
-$ npm install rollup-plugin-esm-http-loader
+$ npm install rollup-plugin-esm-http-resolver
 ```
 
 ## Usage
 
 ```js
-import esmHttpLoader from 'rollup-plugin-esm-http-loader';
+import esmHttpResolver from 'rollup-plugin-esm-http-resolver';
 
 export default {
     input: 'http://localhost:9000/assets/main.js',
-    plugins: [esmHttpLoader({
+    plugins: [esmHttpResolver({
         timeout: 5000,
     })],
     output: {
@@ -31,8 +31,8 @@ export default {
 
 ## Description
 
-This module can load ES modules from a http endpoint. It will more or less
-load ES modules the same way as a browser will load them.
+This module can resolve ES modules from a http endpoint. It will more or less
+load ES modules the same way as a browser will resolve them.
 
 Lest say one have the following structure of ES modules on a http server:
 
@@ -51,7 +51,7 @@ One can now simply make a bundle out of these by passing the URL to
 the main file (`http://cdn.mysite.com/assets/main.js`) to Rollups
 `input` property.
 
-This loader will then resolve the relative imports and request each module
+This module will then resolve the relative imports and request each module
 from the http server.
 
 This module will only load ES modules.
@@ -67,10 +67,13 @@ imports `utils/parse.js`. This module will cache the first request to
 
 This plugin take the following options:
 
-| option   | default | type     | required | details                                                                                                 |
-| -------- | ------- | -------- | -------- | ------------------------------------------------------------------------------------------------------- |
-| timeout  | `10000` | `number` | `false`  | How long, in millisecondsm before a request to a file should be canceled if the server does not respond |
-| follow   | `10`    | `number` | `false`  | How many redirects jumps a request to a file should follow before canceling the request                 |
+| option             | default  | type      | required | details                                                                                                  |
+| ------------------ | -------- | --------- | -------- | -------------------------------------------------------------------------------------------------------- |
+| ignoreContentType  | `false`  | `boolean` | `false`  | Ignore checking content type of each requested file.                                                     |
+| ignoreStatus       | `false`  | `boolean` | `false`  | Ignore checking the http status code of each requested file. If false, only http status 200 is loaded.   |
+| timeout            | `10000`  | `number`  | `false`  | How long, in millisecondsm before a request to a file should be canceled if the server does not respond. |
+| follow             | `10`     | `number`  | `false`  | How many redirects jumps a request to a file should follow before canceling the request.                 |
+
 
 ## License
 
