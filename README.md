@@ -34,7 +34,7 @@ export default {
 This module can resolve ES modules from a http endpoint. It will more or less
 load ES modules the same way as a browser will resolve them.
 
-Lest say one have the following structure of ES modules on a http server:
+Lets say one have the following structure of ES modules on a http server:
 
 ```sh
 /assets/utils/parse.js
