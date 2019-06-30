@@ -4,7 +4,7 @@ Rollup plugin for resolving ES modules over http(s).
 
 [![Dependencies](https://img.shields.io/david/trygve-lie/rollup-plugin-esm-http-resolver.svg?style=flat-square)](https://david-dm.org/trygve-lie/rollup-plugin-esm-http-resolver)
 [![Build Status](http://img.shields.io/travis/trygve-lie/rollup-plugin-esm-http-resolver/master.svg?style=flat-square)](https://travis-ci.org/trygve-lie/rollup-plugin-esm-http-resolver)
-[![Known Vulnerabilities](https://snyk.io/test/github/trygve-lie/rollup-plugin-esm-http-resolver/badge.svg?targetFile=package.json&style=flat-square)](https://snyk.io/test/github/trygve-lie/rollup-plugin-esm-http-resolver?targetFile=package.json)
+[![Known Vulnerabilities](https://snyk.io/test/github/trygve-lie/rollup-plugin-esm-http-resolver/badge.svg?targetFile=package.json&style=flat-square)](https://snyk.io/test/github/trygve-lie/rollup-plugin-esm-http-resolver?targetFile=package.json) [![Greenkeeper badge](https://badges.greenkeeper.io/trygve-lie/rollup-plugin-esm-http-resolver.svg)](https://greenkeeper.io/)
 
 ## Installation
 
