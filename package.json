@@ -35,7 +35,7 @@
     "eslint-plugin-import": "2.18.2",
     "eslint": "6.1.0",
     "rollup": "1.22.0",
-    "tap": "14.6.5"
+    "tap": "14.8.1"
   },
   "dependencies": {
     "node-fetch": "2.6.0"
